@@ -19,7 +19,7 @@ class WhoAmIController {
         val language = headers.getValuesAsList("accept-language").fold("") {
             acc, s -> acc + s
         }
-        val host = headers.getValuesAsList("host").fold("") {
+        val host = headers.getValuesAsList("x-forwarded-for").fold("") {
             acc, s -> acc + s
         }
 
