@@ -14,13 +14,13 @@ class WhoAmIController {
     fun get(@RequestHeader headers: HttpHeaders): ResponseEntity<Reply> {
         println(headers)
         val software = headers.getValuesAsList("user-agent").fold("") {
-            acc, s -> acc + s
+            acc, s -> "$acc, $s"
         }
         val language = headers.getValuesAsList("accept-language").fold("") {
-            acc, s -> acc + s
+            acc, s -> "$acc, $s"
         }
         val host = headers.getValuesAsList("x-forwarded-for").fold("") {
-            acc, s -> acc + s
+            acc, s -> "$acc, $s"
         }
 
         return ResponseEntity.ok(Reply(host, language, software))
